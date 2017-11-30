@@ -1,0 +1,61 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "${APP_NAME}"
+  namespace: "${APP_NS}"
+  labels:
+    app: "${APP_NAME}"
+    version: "${VERSION:-0.0.1}"    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "${APP_NAME}"
+      version: "${VERSION:-0.0.1}"
+  template:
+    metadata:
+      labels:
+        app: "${APP_NAME}"
+        version: "${VERSION:-0.0.1}"
+    spec:
+      serviceAccount: "${SERVICE_ACCOUNT:-default}"
+      volumes:
+      - name: ocnp-cluster-info
+        emptyDir: {}
+      containers:
+      - env:
+        - name: ENV
+          valueFrom:
+            configMapKeyRef:
+              key: config-env
+              name: "${APP_NAME}"
+        image: "${IMAGE_NAME}"
+        imagePullPolicy: Always
+        name: "${APP_NAME}"
+        volumeMounts:
+        - name: ocnp-cluster-info
+          mountPath: /ocnp-cluster-info
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      - name: info
+        image: zlp11313.vci.att.com:5100/com.att.ocnp.mgmt/cluster-info:1.0
+        volumeMounts:
+        - name: ocnp-cluster-info
+          mountPath: /ocnp-cluster-info
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "120Mi"
+            cpu: "120m"
+      restartPolicy: Always

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+
+<!-- TestCase Results Document created by LISA Test Editor -->
+<!-- On: Thu Jan 26 13:30:25 CST 2017 -->
+
+
+<Results name="HelloTest">
+
+
+    <Result node="REST-Call">
+      <content type="com.itko.lisa.http.html.HtmlResponseWrapper" charset="UTF-8"><![CDATA[SFRUUC8xLjEgMjAwIE9LDQpTZXJ2ZXI6IExJU0EvVmlydHVhbC1FbnZpcm9ubWVudC1TZXJ2ZXINCkRhdGU6IFRodSwgMjYgSmFuIDIwMTcgMTM6MzA6MTYgQ1NUDQpYLVBvd2VyZWQtQnk6IExJU0EvOS41LjEgKDkuNS4xLjYpDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24NCkNvbnRlbnQtTGVuZ3RoOiA0MXsidGMiOiB7DQogICAgImNvbnRlbnQiOiAiSGVsbG8gQVQmVCINCn19]]></content>
+    </Result>
+
+
+</Results>

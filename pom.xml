@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.att.cache</groupId>
+	<artifactId>HazleCast1</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- <parent> <groupId>com.att.ajsc</groupId> <artifactId>sdk-java-starter-parent</artifactId> 
+		<version>6.1.0.5-SNAPSHOT</version> </parent> -->
+
+	<properties>
+		<swagger.directory>${basedir}/target/classes/META-INF/resources/swagger</swagger.directory>
+		<icd.file>service.json</icd.file>
+		<icd.package>com.att.cache.HazleCast1.service.rs</icd.package>
+		<java.version>1.8</java.version>
+		<docker.registry>test</docker.registry>
+		<build.number>local</build.number>
+		<kube.namespace>test</kube.namespace>
+		<service.account>test</service.account>
+		<docker.namespace>test</docker.namespace>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sdk.java.rest>6.2.0.7</sdk.java.rest>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.att.ajsc</groupId>
+				<artifactId>sdk-java-starter-parent</artifactId>
+				<version>6.1.0.8</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<developers>
+		<developer>
+			<id>${userId}</id>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>au.com.dius</groupId>
+			<artifactId>pact-jvm-consumer-junit_2.11</artifactId>
+			<version>3.3.9</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.codehaus.groovy</groupId>
+					<artifactId>groovy-all</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>au.com.dius</groupId>
+			<artifactId>pact-jvm-provider-junit_2.11</artifactId>
+			<version>3.3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.att.ajsc</groupId>
+			<artifactId>sdk-java-rest</artifactId>
+			<version>${sdk.java.rest}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<!-- <version>2.24</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<!-- <version>2.24</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+			<version>3.8</version>
+		</dependency>
+		<!-- csi-logging-dependencies goes here -->
+		<!-- csi-logging-dependency-addon -->
+	</dependencies>
+
+	<build>
+		<finalName>HazleCast1</finalName>
+		<plugins>
+
+			<plugin>
+				<groupId>au.com.dius</groupId>
+				<artifactId>pact-jvm-provider-maven_2.11</artifactId>
+				<version>3.3.9</version>
+				<configuration>
+					<!--pactBrokerUrl,user name,password and project version required only 
+						for consumer -->
+					<pactBrokerUrl>${BROKER_URL}</pactBrokerUrl>
+					<pactBrokerUsername>${userName}</pactBrokerUsername>
+					<pactBrokerPassword>${password}</pactBrokerPassword>
+					<projectVersion>0.0.1</projectVersion>
+					<!-- service provider required only for producer -->
+					<serviceProviders>
+						<serviceProvider>
+							<name>HazleCast1</name>
+							<protocol>http</protocol>
+							<host>${APP_URL}</host>
+							<port>${APP_PORT}</port>
+							<path>/</path>
+							<pactBroker>
+								<url>${BROKER_URL}</url>
+								<authentication>
+									<username>${userName}</username>
+									<password>${password}</password>
+								</authentication>
+							</pactBroker>
+							<!-- If you want to test specific PACT and specific port uncomment 
+								the consumers section and comment the pact broker in the service provider -->
+							<!-- <consumers> <consumer> <name>ajscpactconsumer</name> <pactUrl>${brokerUrl}/pacts/provider/ajscpactdemo/consumer/ajscpactdemo/latest</pactUrl> 
+								<pactUrl>${brokerUrl}/pacts/provider/ajscpactdemo/consumer/ajscpactconsumer2/version/0.0.1</pactUrl> 
+								</consumer> </consumers> -->
+						</serviceProvider>
+					</serviceProviders>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>3.1.3</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<locations>com.att.cache.HazleCast1.service.rs</locations>
+							<basePath>/cache</basePath>
+							<info>
+								<title>${project.artifactId} Service</title>
+								<version>${project.version}</version>
+							</info>
+							<swaggerDirectory>${swagger.directory}</swaggerDirectory>
+						</apiSource>
+					</apiSources>
+				</configuration>
+				<executions>
+					<execution>
+						<!-- <phase>compile</phase> -->
+						<phase>package</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>exec-maven-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.11</version>
+				<configuration>
+					<imageName>${docker.registry}/${docker.namespace}/HazleCast1</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<serverId>docker-hub</serverId>
+					<registryUrl>https://${docker.registry}</registryUrl>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+						<imageTag>latest</imageTag>
+					</imageTags>
+					<forceTags>true</forceTags>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>etc/config/*</include>
+						</resource>
+						<!-- csi-logging-resources-goes here -->
+						<!-- csi-logging-resources-addon -->
+					</resources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<!-- mention the logback.xml location through system property or environment 
+			variable to edit logback.xml at run time -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/etc/config</directory>
+				<targetPath>${basedir}/target/etc/config</targetPath>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<!-- csi-logging-target-resources-goes here -->
+			<!-- csi-logging-target-resources-addon -->
+		</resources>
+	</build>
+</project>

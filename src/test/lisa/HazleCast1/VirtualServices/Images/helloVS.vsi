@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+
+<serviceImage id="2" name="helloVS" created="2017-01-26.13:05:19.432" lastModified="2017-01-26.13:06:50.251" version="9.5.1" buildNumber="9.5.1.6">
+<st>
+<t id="1" nd="true">
+<sp>
+<t id="5">
+<rq id="6" op="GET /web/service/hello/" tl="EXACT">
+<at>
+<p n="HTTP-Segment-Attr-0">web</p>
+<p n="HTTP-Segment-Attr-1">service</p>
+<p n="HTTP-Segment-Attr-2">hello</p>
+</at>
+<m>
+<p n="HTTP-Method">GET</p>
+<p n="HTTP-URI">/web/service/hello</p>
+<p n="HTTP-Version">HTTP/1.1</p>
+<p n="Pragma">no-cache</p>
+<p n="Accept">application/json</p>
+</m>
+</rq>
+<rs>
+<rp id="7" t="0">
+<m>
+<p n="HTTP-Response-Code">200</p>
+<p n="HTTP-Response-Code-Text">OK</p>
+<p n="Server">LISA/Virtual-Environment-Server</p>
+<p n="Date">{{=httpNow()}}</p>
+<p n="X-Powered-By">LISA/{{=lisaVersionString()}}</p>
+</m>
+<bd chs="UTF-8">{&quot;tc&quot;: {&#13;&#10;    &quot;content&quot;: &quot;Hello AT&amp;T&quot;&#13;&#10;}}</bd>
+</rp>
+</rs>
+</t>
+</sp>
+<rq id="8" op="GET /web/service/hello/" tl="SIGNATURE">
+<at>
+<p n="HTTP-Segment-Attr-0">web</p>
+<p n="HTTP-Segment-Attr-1">service</p>
+<p n="HTTP-Segment-Attr-2">hello</p>
+</at>
+<m>
+<p n="HTTP-Method">GET</p>
+<p n="HTTP-URI">/web/service/hello</p>
+<p n="HTTP-Version">HTTP/1.1</p>
+<p n="Pragma">no-cache</p>
+<p n="Accept">application/json</p>
+</m>
+</rq>
+<rs>
+<rp id="9" t="0">
+<m>
+<p n="HTTP-Response-Code">200</p>
+<p n="HTTP-Response-Code-Text">OK</p>
+<p n="Server">LISA/Virtual-Environment-Server</p>
+<p n="Date">{{=httpNow()}}</p>
+<p n="X-Powered-By">LISA/{{=lisaVersionString()}}</p>
+</m>
+<bd chs="UTF-8">{&quot;tc&quot;: {&#13;&#10;    &quot;content&quot;: &quot;Hello AT&amp;T&quot;&#13;&#10;}}</bd>
+</rp>
+</rs>
+</t>
+</st>
+<ucrr>
+<rp id="4" t="0">
+<m>
+<p n="HTTP-Response-Code">404</p>
+<p n="HTTP-Response-Code-Text">Not Found</p>
+<p n="Server">LISA/Virtual-Environment-Server</p>
+<p n="Date">{{=httpNow()}}</p>
+<p n="X-Powered-By">LISA/{{=lisaVersionString()}}</p>
+<p n="Content-Type">text/html</p>
+</m>
+<bd chs="UTF-8">&lt;html&gt;&#10;    &lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;&#10;    &lt;body&gt;&#10;        &lt;h1&gt;Not Found&lt;/h1&gt;&#10;        &lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;&#10;        &lt;hr/&gt;&#10;        &lt;p&gt;&lt;i&gt;The DevTest VSE service could not match your request to a recorded request.&amp;nbsp; Consider expanding your service image.&lt;/i&gt;&lt;/p&gt;&#10;        &lt;br/&gt;&lt;font size=&quot;-2&quot;&gt;Produced by a DevTest virtualized web server.&lt;/font&gt;&#10;    &lt;/body&gt;&#10;&lt;/html&gt;&#10;</bd>
+</rp>
+</ucrr>
+<usrr>
+<rp id="3" t="0">
+<m>
+<p n="HTTP-Response-Code">404</p>
+<p n="HTTP-Response-Code-Text">Not Found</p>
+<p n="Server">LISA/Virtual-Environment-Server</p>
+<p n="Date">{{=httpNow()}}</p>
+<p n="X-Powered-By">LISA/{{=lisaVersionString()}}</p>
+<p n="Content-Type">text/html</p>
+</m>
+<bd chs="UTF-8">&lt;html&gt;&#10;    &lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;&#10;    &lt;body&gt;&#10;        &lt;h1&gt;Not Found&lt;/h1&gt;&#10;        &lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;&#10;        &lt;hr/&gt;&#10;        &lt;p&gt;&lt;i&gt;The DevTest VSE service could not match your request to a recorded request.&amp;nbsp; Consider expanding your service image.&lt;/i&gt;&lt;/p&gt;&#10;        &lt;br/&gt;&lt;font size=&quot;-2&quot;&gt;Produced by a DevTest virtualized web server.&lt;/font&gt;&#10;    &lt;/body&gt;&#10;&lt;/html&gt;&#10;</bd>
+</rp>
+</usrr>
+</serviceImage>
