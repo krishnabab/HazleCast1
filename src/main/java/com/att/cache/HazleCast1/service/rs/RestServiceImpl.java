@@ -53,7 +53,7 @@ public class RestServiceImpl implements RestService {
 	
 	public String showCache(){
 		Iterator<String> it = objQ.iterator();
-		String response = "HazleCast-2 : Cache is looking like this :";
+		String response = "HazleCast-1 : Cache is looking like this :";
 		while (it.hasNext()) {
 			response = response+"\n" + it.next();
 		}

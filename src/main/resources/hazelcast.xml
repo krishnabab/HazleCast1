@@ -19,7 +19,8 @@
             <tcp-ip enabled="true">
             	<member>192.168.1.8</member>
             	<member>169.254.147.68</member>
-            	<member>135.91.184.237</member>
+            	<member>135.91.184.217</member>
+            	<member>135.49.202.49</member>
             	<member>IBMADM-KG6378.ITServices.sbc.com</member>
                	<member>bltv0328.bhdc.att.com</member>
             </tcp-ip>
