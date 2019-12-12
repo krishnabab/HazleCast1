@@ -13,8 +13,8 @@
         <port auto-increment="true">5701</port>
         <join>
             <multicast enabled="false">
-                <multicast-group>224.2.2.3</multicast-group>
-                <multicast-port>54327</multicast-port>
+                <multicast-group>4.23.2.30</multicast-group>
+                <multicast-port>54321234</multicast-port>
             </multicast>
             <tcp-ip enabled="true">
             	<member>2.1.1.8</member>
