@@ -17,12 +17,12 @@
                 <multicast-port>54327</multicast-port>
             </multicast>
             <tcp-ip enabled="true">
-            	<member>192.168.1.8</member>
-            	<member>169.254.147.68</member>
-            	<member>135.91.184.217</member>
-            	<member>135.49.202.49</member>
-            	<member>IBMADM-KG6378.ITServices.sbc.com</member>
-               	<member>bltv0328.bhdc.att.com</member>
+            	<member>2.1.1.8</member>
+            	<member>9.4.7.8</member>
+            	<member>5.1.4.7</member>
+            	<member>5.4.2.9</member>
+            	<member>idf-lol.bob.god.com</member>
+               	<member>hell.brod.tot.com</member>
             </tcp-ip>
         </join>
     </network>
