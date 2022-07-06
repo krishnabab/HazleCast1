@@ -101,7 +101,7 @@
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast</artifactId>
-			<version>3.8</version>
+			<version>3.11</version>
 		</dependency>
 		<!-- csi-logging-dependencies goes here -->
 		<!-- csi-logging-dependency-addon -->
